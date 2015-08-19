@@ -11,9 +11,13 @@ module.exports = function(prefix, color){
   }
 
   if(typeof color === 'undefined'){
-    messageReformat = function(){};
+    messageReformat = function(message){
+      return message;
+    };
   }else{
-    messageReformat = function(message){return colors[color](messageReformat)};
+    messageReformat = function(message){
+      return colors[color](message);
+    };
   }
 
   return {
