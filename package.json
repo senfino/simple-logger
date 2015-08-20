@@ -1,5 +1,8 @@
 {
   "name": "plain-logger",
   "version": "0.3.0",
-  "main": "index.js"
+  "main": "index.js",
+  "dependencies": {
+    "lodash": "^3.10.1"
+  }
 }
