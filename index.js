@@ -1,10 +1,10 @@
 var colors = require('colors/safe');
 var _ = require('lodash');
 
-module.exports = function(prefix, color, noDefaults){
+module.exports = function(prefix, color){
   var defaultOptions;
 
-  function getOptions(prefix, color){
+  function getOptions(prefix, color, noDefaults){
     var fullPrefix;
     var messageReformat;
 
@@ -55,14 +55,14 @@ module.exports = function(prefix, color, noDefaults){
       var options = _.merge({}, defaultOptions, 
         getOptions(customOptions.prefix, customOptions.color, true));
       
-      console.log(options.messageReformat(fullPrefix + message));
+      console.log(options.messageReformat(options.fullPrefix + message));
     },
     warn: function(message, customOptions){
       var customOptions = customOptions || {};
       var options = _.merge({}, defaultOptions, 
         getOptions(customOptions.prefix, customOptions.color, true));
 
-      console.warn(options.messageReformat(fullPrefix + message));
+      console.warn(options.messageReformat(options.fullPrefix + message));
     }
   };
 };
