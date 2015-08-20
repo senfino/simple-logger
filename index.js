@@ -43,18 +43,24 @@ module.exports = function(prefix, color, noDefaults){
   defaultOptions = getOptions(prefix, color);
 
   return {
-    trace: function(message, options){
-      var options = _.merge({}, defaultOptions, getOptions(options.prefix, options.color, true));
+    trace: function(message, customOptions){
+      var customOptions = customOptions || {};
+      var options = _.merge({}, defaultOptions, 
+        getOptions(customOptions.prefix, customOptions.color, true));
 
       console.trace(options.messageReformat(options.fullPrefix + message));
     },
-    log: function(message, options){
-      var options = _.merge({}, defaultOptions, getOptions(options.prefix, options.color, true));
+    log: function(message, customOptions){
+      var customOptions = customOptions || {};
+      var options = _.merge({}, defaultOptions, 
+        getOptions(customOptions.prefix, customOptions.color, true));
       
       console.log(options.messageReformat(fullPrefix + message));
     },
-    warn: function(message, options){
-      var options = _.merge({}, defaultOptions, getOptions(options.prefix, options.color, true));
+    warn: function(message, customOptions){
+      var customOptions = customOptions || {};
+      var options = _.merge({}, defaultOptions, 
+        getOptions(customOptions.prefix, customOptions.color, true));
 
       console.warn(options.messageReformat(fullPrefix + message));
     }
