@@ -17,3 +17,5 @@ logger.warn('example message');
 logger.trace('example message', {prefix: 'p', color: 'blue'});
 logger.log('example message', {prefix: 'p', color: 'blue'});
 logger.warn('example message', {prefix: 'p', color: 'blue'});
+
+logger.log({a:'b', c:'d'});

@@ -40,29 +40,41 @@ module.exports = function(prefix, color){
     };
   }
 
+  function processMessage(rawMessage){
+    var message;
+
+    if(typeof rawMessage === 'object'){
+      message = JSON.stringify(rawMessage, null, 2);
+    }else{
+      message = rawMessage;
+    }
+
+    return message;
+  }
+
   defaultOptions = getOptions(prefix, color);
 
   return {
-    trace: function(message, customOptions){
+    trace: function(rawMessage, customOptions){
       var customOptions = customOptions || {};
       var options = _.merge({}, defaultOptions, 
         getOptions(customOptions.prefix, customOptions.color, true));
 
-      console.trace(options.messageReformat(options.fullPrefix + message));
+      console.trace(options.messageReformat(options.fullPrefix + processMessage(rawMessage)));
     },
-    log: function(message, customOptions){
+    log: function(rawMessage, customOptions){
       var customOptions = customOptions || {};
       var options = _.merge({}, defaultOptions, 
         getOptions(customOptions.prefix, customOptions.color, true));
       
-      console.log(options.messageReformat(options.fullPrefix + message));
+      console.log(options.messageReformat(options.fullPrefix + processMessage(rawMessage)));
     },
-    warn: function(message, customOptions){
+    warn: function(rawMessage, customOptions){
       var customOptions = customOptions || {};
       var options = _.merge({}, defaultOptions, 
         getOptions(customOptions.prefix, customOptions.color, true));
 
-      console.warn(options.messageReformat(options.fullPrefix + message));
+      console.warn(options.messageReformat(options.fullPrefix + processMessage(rawMessage)));
     }
   };
 };
