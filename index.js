@@ -75,6 +75,13 @@ module.exports = function(prefix, color){
         getOptions(customOptions.prefix, customOptions.color, true));
 
       console.warn(options.messageReformat(options.fullPrefix + processMessage(rawMessage)));
+    },
+    error: function(rawMessage, customOptions){
+      var customOptions = customOptions || {};
+      var options = _.merge({}, defaultOptions, 
+        getOptions(customOptions.prefix, customOptions.color, true));
+
+      console.error(options.messageReformat(options.fullPrefix + processMessage(rawMessage)));
     }
   };
 };
